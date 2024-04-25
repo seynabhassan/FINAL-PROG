@@ -14,15 +14,10 @@ body {
 
 /* Styling af topsektionen med baggrundsbillede, radius og positionering */
 .top {
-  width: 800px;
   margin: 0 auto;
   height: 105px;
-  overflow: hidden;
   background-color: #def6d8;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23DEF6D8' fill-opacity='1' d='M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,234.7C672,235,768,213,864,218.7C960,224,1056,256,1152,266.7C1248,277,1344,267,1392,261.3L1440,256L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
-  border-radius: 15px;
-  position: relative;
-  z-index: 1;
+  display: flex;
 }
 
 /* Inverter baggrundsbilledet i topsektionen */
@@ -55,14 +50,13 @@ nav a:hover {
 
 /* Styling af header og navigation */
 header {
-  width: 25%;
   color: #91c789;
   font-size: 16px;
-  display: block;
   float: left;
-  padding: 0px;
-  margin: 0px;
   font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 nav {
@@ -79,10 +73,7 @@ nav {
   margin: 0;
 }
 
-#logo {
-  padding: 30px 10px 20px 15px;
-  margin: 0px;
-}
+
 
 #logoimg {
   width: 110px;
