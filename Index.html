@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriTracker</title>
+  <!-- Link to the Nunito font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.google.com/specimen/Nunito" rel="stylesheet">
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Container for the entire page -->
+  <div class="container">
+    <div class="top">
+      <header>
+        <p id="logo">
+          <img id="logoimg" src="logo.png">
+        </p>
+      </header>
+
+      <nav>
+        <div id="menu">
+          <a href="Index.html">Dashboard</a>
+          <a href="meal-creator.html">Meal Creator</a>
+          <a href="meal-tracker.html">Meal Tracker</a>
+          <a href="nutri-reports.html">Nutri Report</a>
+          <a href="food-inspector.html">Food Inspector</a>
+        </div>
+      </nav>
+    </div>
+
+    <div id="content">
+      <div id="pagetitle">
+        Dashboard
+      </div>
+
+      <div id="dashboard">
+        <!-- Box 1: Meals today -->
+        <div id="dashbox">
+          <div id="boxtitle">Meals today</div>
+          <div id="box">
+            <h2 id="todaym">0</h2>
+            Meals consumed today
+          </div>
+        </div>
+
+        <!-- Box 2: Energy Today -->
+        <div id="dashbox">
+          <div id="boxtitle">Energy Today</div>
+          <div id="box">
+            <h2><span id="todaye">0</span> kcal</h2>
+            or 60% of daily recommendation
+          </div>
+        </div>
+
+        <!-- Box 3: Water Today -->
+        <div id="dashbox">
+          <div id="boxtitle">Water Today</div>
+          <div id="box">
+            <h2><span id="todayw">0</span> L</h2>
+            Water consumed today
+          </div>
+        </div>
+
+        <!-- Box 4: Protein Today -->
+        <div id="dashbox">
+          <div id="boxtitle">Protein Today</div>
+          <div id="box">
+            <h2><span id="todayp">0</span>g</h2>
+            53% of daily recommendation
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="custom.js"></script>
+  <script src="dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', dashboard());
+  </script>
+</body>
+</html>

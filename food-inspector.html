@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags for tegnsætning og viewport indstillinger -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Titel for websiden -->
+  <title>NutriTracker</title>
+  <!-- Preconnect-link til Google Fonts og Material Icons -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- Link til Nunito-fonten -->
+  <link href="https://fonts.google.com/specimen/Nunito" rel="stylesheet">
+  <!-- Link til den eksterne styles.css-fil -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="top">
+      <header>
+        <p id="logo">
+          <img id="logoimg" src="logo.png" >
+        </p>
+      </header>
+      <nav>
+        <div id="menu">
+          <a href="Index.html">Dashboard</a>
+          <a href="meal-creator.html">Meal Creator</a>
+          <a href="meal-tracker.html">Meal Tracker</a>
+          <a href="nutri-reports.html">Nutri Report</a>
+          <a href="food-inspector.html">Food Inspector</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Indholdssektion -->
+    <div id="content">
+      <div id="producttitle">
+        <div id="pagetitle2">
+          <label for="select1">Vælg fødevarer:</label>
+          <select class="form-control" id="select1" size="1" onchange="foodinspector()">
+          </select> 
+        </div>
+        <div id="productid">Produktid: <span id="pid"></span></div>
+        <div id="taxonomisk">Taxonomisk: <span id="tisk"></span></div>
+        <div id="fodevaregruppe">Fødevaregruppe: <span id="foodgroup"></span></div>
+      </div>
+
+      <div id="foodcontent">
+        <div id="nutrition">
+          <div id="pagetitle2">
+            Ernæring
+          </div>
+
+          <!-- Ernæringstabel -->
+        <table>
+          <tr>
+            <td id="nutritiontable">Energy (kj):</td>
+            <td id="nutritiontable2"><span id="kj"></span> kj</td>
+          </tr>
+          <tr>
+            <td id="nutritiontable">Energy(kcal):</td>
+            <td id="nutritiontable2"><span id="kcal"></span> kcal</td>
+          </tr>
+          <tr>
+            <td id="nutritiontable">Protein:</td>
+            <td id="nutritiontable2"><span id="protien"></span> g</td>
+          </tr>
+          <tr>
+            <td id="nutritiontable">Dietary Fiber:</td>
+            <td id="nutritiontable2"><span id="fiber"></span> g</td>
+          </tr>
+          <tr>
+            <td id="nutritiontable">Fat:</td>
+            <td id="nutritiontable2"><span id="fedt"></span> g</td>
+          </tr>
+          <tr>
+            <td id="nutritiontable">Carbohydrate:</td>
+            <td id="nutritiontable2"><span id="kulhydrat"></span> g</td>
+          </tr>
+          <tr>
+            <td id="nutritiontable">Water:</td>
+            <td id="nutritiontable2"><span id="vand"></span> g</td>
+          </tr>
+          <tr>
+            <td id="nutritiontable">Dry Matter:</td>
+            <td id="nutritiontable2"><span id="torstof"></span> g</td>
+          </tr>
+        </table>
+    </div>
+
+    <div id="productimage">
+      <div id="pagetitle2">
+       Product Image
+        </div>
+  </div>
+
+ <script src="custom.js"></script>
+ <script src="food-inspector.js"></script>
+ <script>
+   // Event listener for DOM-indholdet skal være indlæst
+   document.addEventListener('DOMContentLoaded', populatefoodSelect());
+ </script>
+</body>
+</html>

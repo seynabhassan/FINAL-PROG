@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriTracker</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+  </script>
+  <link href="https://fonts.google.com/specimen/Nunito" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+   <!-- Container for hele siden -->
+   <div class="container">
+    <div class="top">
+      <header>
+        <p id="logo">
+          <img id="logoimg" src="logo.png">
+        </p>
+      </header>
+
+      <nav>
+        <div id="menu">
+          <a href="Index.html">Dashboard</a>
+          <a href="meal-creator.html">Meal Creator</a>
+          <a href="meal-tracker.html">Meal Tracker</a>
+          <a href="nutri-reports.html">Nutri Report</a>
+          <a href="food-inspector.html">Food Inspector</a>
+        </div>
+      </nav>
+    </div>
+
+   <!-- Hovedindhold -->
+    <div id="content2">
+      <div id="pagetitle">
+        Meal Tracker
+      </div>
+      <div id="pagetitle-right">
+        <div id="greenbutton" onclick="MealConsumption.addMealtracker('liquid')">+</div>
+        <p id="bluebutton" onclick="MealConsumption.addMealtracker('Dinner')">+</p>
+      </div>
+
+      <div id="mealtrackercontent">
+        <table id="mttable">
+          <thead>
+            <tr>
+              <th width="6%"></th>
+              <th width="23%" id="mealsource">Meal & Source</th>
+              <th width="10%">Meal</th>
+              <th width="12%">Weight & Energy</th>
+              <th width="20%">Added on</th>
+              <th width="15%">% of daily cons.</th>
+              <th width="14%"></th>
+            </tr>
+          </thead>
+          <tbody id="mtbody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<!-- Modale vinduer til at vise måltidsingredienser og tilføje måltider i Meal Tracker -->
+  <div class="modal bd-example-modal-md" id="indmodel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+    <!-- Modal Dialog -->
+    <div class="modal-dialog modal-md">
+
+      <!-- Modal Content -->
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+
+          <!-- Modal Title -->
+          <h5 class="modal-title alice" id="indmodelheader">Meal Ingredients</h5>
+
+          <!-- Close Button -->
+          <button type="button" id="mclosebtn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div id="indmdata"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal bd-example-modal-md" id="mealtrackermodel" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+    <!-- Modal Dialog -->
+    <div class="modal-dialog modal-md">
+
+      <!-- Modal Content -->
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+
+          <!-- Modal Title -->
+          <h5 class="modal-title alice" id="staticBackdropLabel">Meal Tracker</h5>
+
+          <!-- Close Button -->
+          <button type="button" id="mclosebtn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <form id="mealtrackerForm" action="" onsubmit="event.preventDefault()">
+
+            <!-- Meal Name Input -->
+            <div class="mb-3">
+              <label for="select1">Available Meals:</label>
+              <select class="form-control" id="meallist" size="10">
+              </select>
+            </div>
+
+            <!-- Added On Input -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="addedOn" class="form-label">Date of Consumption:</label>
+                <input type="date" class="form-control" id="addedOn" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="consume_time" class="form-label">Time of Consumption:</label>
+                <input type="time" class="form-control" id="consume_time" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="consume_weight" class="form-label">Consume weight (in grams):</label>
+                <input type="number" class="form-control" id="consume_weight" required>
+              </div>
+
+              <button type="button" class="btn btn-primary" onclick="MealConsumption.addmealconsumption()">Add Item</button>
+          </form>
+        </div>
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="custom.js"></script>
+  <script src="meal-tracker.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', MealConsumption.showmealtracker());
+    document.addEventListener('DOMContentLoaded', populatefoodSelect());
+    document.addEventListener('DOMContentLoaded', setTodayDate());
+  </script>
+
+</body>
+</html>
