@@ -15,7 +15,7 @@ class Food {
         method: 'GET',
         headers: {
           'Accept': 'text/plain',
-          'X-API-Key': 168795
+          'X-API-Key': 168985
         }
       });
 
@@ -51,7 +51,7 @@ async function getfoodData(foodID, sortkey, lkey, fqty, f) {
       method: 'GET',
       headers: {
         'Accept': 'application/json', 
-        'X-API-Key': 168795
+        'X-API-Key': 168985
       }
     });
 
