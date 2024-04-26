@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Dokumentmetadata -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NutriTracker</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <title>Activity Tracker</title>
+  
   <link href="https://fonts.google.com/specimen/Nunito" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
 </head>
-
 <body>
-
     <div class="top">
       <header>
         <p id="logo">
           <img id="logoimg" src="logo.png">
         </p>
       </header>
+
       <nav>
         <div id="menu">
           <a href="Index.html">Daily Nutri</a>
@@ -30,40 +28,32 @@
         </div>
       </nav>
     </div>
+    
+    <!-- Side titler -->
+
+    <div id="pagetitle">
+      Activity Tracker 
+    </div>
 
     <!-- Indholdssektion -->
     <div id="content">
-      <div id="pagetitle">
-        Nutri Report
+      <div id="producttitle">
+        <div id="pagetitle2">
+          <label for="select1">Pick Activity:</label>
+          <select class="form-control" id="select1" size="1" onchange="foodinspector()">
+          </select> 
+        </div>
+      
+        <div id="activity">Activity: <span id="act"></span></div>
       </div>
 
-      <!-- Nutri Reports-sektion -->
-      <div id="nutri-reports">
-        <table>
-          <thead>
-            <!-- Tabelhovedrække -->
-            <tr>
-              <th>Meal Name</th>
-              <th>Meals</th>
-              <th>Water</th>
-              <th>kcal consumed</th>
-              <th>Protein</th>
-              <th>Fat</th>
-              <th>Fiber</th>
-            </tr>
-          </thead>
-          <tbody id="nutri">
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <script src="custom.js"></script>
-  <script src="nutri-reports.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', shownutrireport());
-  </script>
+
+<script src="food-inspector.js">
+
+</script>
 
 </body>
+
+
 
 </html>

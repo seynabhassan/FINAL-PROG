@@ -5,7 +5,7 @@ async function fdata(foodID, flag) {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'X-API-Key': 168795
+        'X-API-Key': 168985
       }
     });
 
@@ -29,7 +29,7 @@ async function fodoinsp(foodID, sortkey) {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'X-API-Key': 168795
+        'X-API-Key': 168985
       }
     });
 
