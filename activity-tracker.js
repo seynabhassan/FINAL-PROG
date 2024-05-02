@@ -1,3 +1,22 @@
+/*
+Bruger Map til at holde værdierne for exercise:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+*/ 
+const exerciseMap = new Map();
+
+exerciseMap.set('walking', 215);
+exerciseMap.set('walkingDown', 414);
+exerciseMap.set('walkingUp', 1079);
+exerciseMap.set('walkingUp', 1079);
+exerciseMap.set('walkingUp', 1079);
+exerciseMap.set('walkingUp', 1079);
+exerciseMap.set('walkingUp', 1079);
+exerciseMap.set('walkingUp', 1079);
+exerciseMap.set('walkingUp', 1079);
+exerciseMap.set('walkingUp', 1079);
+exerciseMap.set('walkingUp', 1079);
+exerciseMap.set('walkingUp', 1079);
+
 function calculateCalories() {
   const exerciseSelect = document.getElementById("exerciseSelect");
   const selectedExercise = exerciseSelect.value;
