@@ -35,20 +35,68 @@
       Activity Tracker 
     </div>
 
-    <!-- Indholdssektion -->
-    <div id="content">
-      <div id="producttitle">
-        <div id="pagetitle2">
-          <label for="select1">Pick Activity:</label>
-          <select class="form-control" id="select1" size="1" onchange="foodinspector()">
-          </select> 
-        </div>
-      
-        <div id="activity">Activity: <span id="act"></span></div>
-      </div>
+    <!-- Vælg træning med drop down menu -->
+    <div id="exercise">
+ 
+    <label for="exerciseSelect">Exercise Type:</label>
+    <select id="exerciseSelect">
+      <optgroup label="Everyday Activties"></optgroup>
+        <option value="walking">Walking (moderate)</option>
+        <option value="walkingDown">Walking down stairs</option>
+        <option value="walkingUp">Walking up stairs</option>
+        <option value="mowing">Mowing</option>
+        <option value="foodBed">Making food/Making bed</option>
+        <option value="weeding">Weeding</option>
+        <option value="clearSnow">Clear snow</option>
+        <option value="readTV">Reading/Watching TV</option>
+        <option value="standing">Standing Up</option>
+        <option value="cycling">Cycling (moderate)</option>
+        <option value="dusting">Dusting</option>
+        <option value="washFloor">Washing Floor</option>
+        <option value="washWindow">Wiping Windows</option>
+
+      <optgroup label="Sports"></optgroup>
+        <option value="cardio">Cardio</option>
+        <option value="weightTraining">Hard weight Traning</option>
+        <option value="badminton">Badminton</option>
+        <option value="volleyball">Volleyball/option>
+        <option value="tableTennis">Table Tennis</option>
+        <option value="dancingHard">Dancing (hard)</option>
+        <option value="dancingMod">Dancing (moderate)</option>
+        <option value="football">Football</option>
+        <option value="walkingFast">Walking (fast)</option>
+        <option value="golf">Golf</option>
+        <option value="handball">Handball</option>
+        <option value="squash">Squash</option>
+        <option value="jogging">Jogging</option>
+        <option value="crossCoun">Cross Country Skiing</option>
+        <option value="runningMod">Running (moderate)</option>
+        <option value="runningFast">Running (fast)</option>
+        <option value="horseRide">Horseback riding</option>
+        <option value="iceSkate">Ice Skating</option>
+        <option value="swim">Swimming</option>
+        <option value="cycling">Cycling (fast)</option>
+
+      <optgroup label="Different types of work"></optgroup>
+        <option value="car">Car Repair</option>
+        <option value="excavation">Excavation Work</option>
+        <option value="agricultural">Agricultural work</option>
+        <option value="officeWork">Light office work</option>
+        <option value="paintHouse">Painting House</option>
+        <option value="masonry">Masonry</option>
+        <option value="firewood">Chopping and hauling firewood</option>
+      </select>
+
+    <button onclick="calculateCalories()">Calculate Calories</button>
+        <p id="caloriesBurned"></p>
+
+  </div>
+    
+  <div id="metabolism">
+<p>Basal Metabolic Rate:</p>
 
 
-<script src="food-inspector.js">
+<script src="activity-tracker.js">
 
 </script>
 
