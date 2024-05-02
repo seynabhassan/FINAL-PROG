@@ -411,12 +411,6 @@ tr {
   margin: 0 5px;
   vertical-align: middle;
 }
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  padding: 0;
-  background: #f4f4f4;
-}
 
 table {
   width: 100%;
@@ -431,12 +425,12 @@ th, td {
 }
 
 th {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #def6d8;
+  color: rgb(0, 0, 0);
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #78d065;
   color: white;
   border: none;
   padding: 10px 20px;
