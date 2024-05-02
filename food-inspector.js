@@ -51,11 +51,8 @@ async function fodoinsp(foodID, sortkey) {
 async function foodinspector() {
   try {
     fid = select1.value;
-    pid.innerHTML = fid;
 
     // Fetch and display various nutritional information using the previously defined functions
-    foodgroup.innerHTML = await fdata(fid, "fødevareGruppe");
-    tisk.innerHTML = await fdata(fid, "taxonomicName");
     kj.innerHTML = await fodoinsp(fid, "1010");
     kcal.innerHTML = await fodoinsp(fid, "1030");
     protien.innerHTML = await fodoinsp(fid, "1110");
