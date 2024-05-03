@@ -44,7 +44,6 @@
         Meal Creator
       </div>
       <div id="pagetitle-right">
-        <p id="greenbutton" onclick="Meal.addMealmodel('liquid')">+</p>
         <p id="bluebutton" onclick="Meal.addMealmodel('Dinner')">+</p>
       </div>
 
@@ -101,19 +100,19 @@
             <!-- Added On Input -->
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="addedOn" class="form-label">Added On:</label>
-                <input type="date" class="form-control" id="addedOn" required>
+                <label for="timeEaten" class="form-label">Filter</label>
+                <input type="text" class="form-control" id="filter" required>
               </div>
 
               <div class="col-md-6 mb-3">
-                <label for="timeEaten" class="form-label">Mealtype:</label>
-                <input type="text" class="form-control" id="mealtype" disabled required>
+                <label for="addedOn" class="form-label">Added On:</label>
+                <input type="date" class="form-control" id="addedOn" required>
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-5">
-                <label for="select1">Available Foods for Ingredients:</label>
+                <label for="select1">Ingredients:</label>
                 <select class="form-control" id="select1" size="10">
                 </select>
               </div>
@@ -177,6 +176,14 @@
     document.addEventListener('DOMContentLoaded', populatefoodSelect());
     document.addEventListener('DOMContentLoaded', Meal.showmeal());
     document.addEventListener('DOMContentLoaded', setTodayDate());
+    
+    //update filter
+    document.getElementById("filter").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        filterfoodSelect();
+      }
+    });
   </script>
 
 </body>

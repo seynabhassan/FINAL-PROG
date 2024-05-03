@@ -45,6 +45,23 @@ function populatefoodSelect() {
   });
 }
 
+//filter
+function filterfoodSelect() {
+  let filter = document.getElementById("filter");
+  if (filter == null) return populatefoodSelect();
+  let selectElement = document.getElementById("select1");
+  selectElement.innerHTML = "";
+  let fooditems = JSON.parse(localStorage.getItem("fooditems"))
+  fooditems.forEach(function (item) {
+    if(item.foodName.toLowerCase().includes(filter.value)) {
+      let option = document.createElement("option");
+      option.text = item.foodName;
+      option.value = item.foodID; 
+      selectElement.add(option);
+    }
+  });
+}
+
 async function getfoodData(foodID, sortkey, lkey, fqty, f) {
   try {
     const response = await fetch(`https://nutrimonapi.azurewebsites.net/api/FoodCompSpecs/ByItem/${foodID}/BySortKey/${sortkey}`, {

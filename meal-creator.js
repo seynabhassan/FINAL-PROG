@@ -1,5 +1,5 @@
 class Meal { // Representing meals in the meal creator
-  constructor(mealName, totalKcal, weight, protein, fat, fiber, addedOn, timeEaten, ingredients, mealtype) {
+  constructor(mealName, totalKcal, weight, protein, fat, fiber, addedOn, timeEaten, ingredients) {
     this.mealName = mealName;
     this.totalKcal = totalKcal;
     this.weight = weight;
@@ -9,16 +9,14 @@ class Meal { // Representing meals in the meal creator
     this.addedOn = addedOn;
     this.timeEaten = timeEaten;
     this.ingredients = ingredients;
-    this.mealtype = mealtype
   }
 
   // Method to add meal model with a given meal type
-  static addMealmodel(mtype) { // Popup green and blue button 
+  static addMealmodel() { // Popup green and blue button 
     const modal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
       backdrop: 'static',
       keyboard: false
     });
-    mealtype.value = mtype;
     localStorage.setItem("ind", "[]");
     // Trigger the modal to show
     modal.show();
@@ -94,7 +92,7 @@ class Meal { // Representing meals in the meal creator
       tfiber += Number(e.fiber);
     });
 
-    ml[m] = new Meal(mealName.value, tenergy, tqty, tp, tfat, tfiber, addedOn.value, timeEaten.value, ind, mealtype.value);
+    ml[m] = new Meal(mealName.value, tenergy, tqty, tp, tfat, tfiber, addedOn.value, timeEaten.value, ind);
     localStorage.setItem("meal", JSON.stringify(ml)); // Saving the meal 
     localStorage.setItem("ind", "[]");
 

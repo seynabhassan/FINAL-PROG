@@ -50,14 +50,9 @@ async function fodoinsp(foodID, sortkey) {
 // Asynchronous function to inspect and display nutritional information for a selected food item
 async function foodinspector() {
   try {
-    // Display a loading message while fetching data
-    productimage.innerHTML = "<h3>Loading Data from API...</h3>";
     fid = select1.value;
-    pid.innerHTML = fid;
 
     // Fetch and display various nutritional information using the previously defined functions
-    foodgroup.innerHTML = await fdata(fid, "fødevareGruppe");
-    tisk.innerHTML = await fdata(fid, "taxonomicName");
     kj.innerHTML = await fodoinsp(fid, "1010");
     kcal.innerHTML = await fodoinsp(fid, "1030");
     protien.innerHTML = await fodoinsp(fid, "1110");
@@ -67,7 +62,6 @@ async function foodinspector() {
     vand.innerHTML = await fodoinsp(fid, "1620");
     torstof.innerHTML = await fodoinsp(fid, "1610");
 
-    productimage.innerHTML = "<p>Sorry! Image Not Available.</p>"; // Display a message if the image is not available
 
   } catch (error) {
     // Log and handle errors that occur during the food inspection

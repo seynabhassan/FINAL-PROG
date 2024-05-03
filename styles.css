@@ -174,8 +174,6 @@ nav {
   text-align: center;
 }
 
-/* Styling af næringsrapporter og tabeller */
-#nutri-reports {}
 
 table {
   width: 100%;
@@ -385,7 +383,6 @@ tr {
   text-align: center;
   font-size: 12px;
   margin: 0 5px;
-  vertical-align: middle;
 }
 
 #productid {
@@ -409,5 +406,61 @@ tr {
   text-align: center;
   font-size: 12px;
   margin: 0 5px;
-  vertical-align: middle;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #def6d8;
+  color: rgb(0, 0, 0);
+}
+
+button {
+  background-color: #78d065;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#caloriesBurned {
+  font-size: 18px;
+  margin-top: 20px; 
+}
+
+#exercise {
+  padding: 60px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #def6d8;
+  border-radius: 10px;
+  height: 60px;
+  float: left;
+  background-color: #f2fff5;
+}
+
+#metabolism {
+  padding: 50px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #def6d8;
+  border-radius: 10px;
+  height: 60px;
+  float: left;
+  background-color: #f2fff5;
 }
