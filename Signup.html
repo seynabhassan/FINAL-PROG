@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="signup-box">
+        <div class="signup-header">
+            <h2>Signup</h2>
+        </div>
+        <form class="signup-form">
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Username" autocomplete="off" required>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password" autocomplete="off" required>
+            </div>
+            <script>
+                function validateAge() {
+                  var ageInput = document.getElementById("age").value;
+                  var age = parseInt(ageInput);
+                  var currentDate = new Date();
+                  var currentYear = currentDate.getFullYear();
+                  var birthYear = currentYear - age;
+              
+                  if (age < 0 || isNaN(age)) {
+                    alert("Please enter a valid age.");
+                    return false;
+                  } else if (currentYear - birthYear < 13) {
+                    alert("You must be at least 13 years old to use this service.");
+                    return false;
+                  }
+                  return true;
+                }
+              </script>
+            <form action="/submit-age" method="POST" onsubmit="return validateAge()">
+                <input type="age" class="input-field" placeholder="Age" min="0" required>
+                <br><br>
+                
+                <div class="input-box">
+                    <input type="weight" class="input-field" placeholder="Weight" autocomplete="off" required>
+                </div>
+                <script>
+                    function submitForm() {
+                        var weightInput = document.getElementById("weight").value;
+                        var weight = parseInt(weightInput);
+                
+                        if (weight === 0 || isNaN(weight)) {
+                            alert("Please enter a valid weight.");
+                        } else {
+                            // Submit the form
+                            document.querySelector("form").submit();
+                        }
+                    }
+                </script>
+                <label for="gender">Please select your gender:</label>
+                <select id="gender" name="gender">
+                    <option value="man">Man</option>
+                    <option value="woman" selected>Woman</option>
+                    <option value="another">Other</option>
+                </select>
+              </form>
+              <br>
+            <div class="submit-button">
+                <button type="submit" class="submit-btn">Sign up</button>
+            </div>
+
+            <div class="signup-link">
+                <p style="font-size: 10px;">Already have an account? <a href="Login.html">Log in</a></p>
+            </div>
+            
+        </form>
+    </div>
+</body>
+</html>
