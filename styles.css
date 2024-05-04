@@ -464,3 +464,21 @@ button:hover {
   float: left;
   background-color: #f2fff5;
 }
+
+table, th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #def6d8;
+}
+/* Styling to align the date input to the right */
+#dateInputContainer {
+  text-align: right;
+   margin: 20px 20px 20px 0;
+}
