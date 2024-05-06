@@ -95,7 +95,6 @@ class Meal { // Representing meals in the meal creator
     ml[m] = new Meal(mealName.value, tenergy, tqty, tp, tfat, tfiber, addedOn.value, timeEaten.value, ind);
     localStorage.setItem("meal", JSON.stringify(ml)); // Saving the meal 
     localStorage.setItem("ind", "[]");
-
     Meal.showmeal(); // Displaying meals
     mealForm.reset();
     tfood.innerHTML = "";
