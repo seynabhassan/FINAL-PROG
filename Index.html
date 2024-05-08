@@ -29,17 +29,47 @@
         </div>
       </nav>
     </div>
-  </div>
-  <script src="custom.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', dashboard());
+       <!-- Indholdssektion -->
+       <div id="content">
+        <div id="pagetitle">
+          Monthly view
+        </div>
+  
+        <!-- Nutri Reports-sektion -->
+        <div id="nutri-reports">
+          <table>
+            <thead>
+              <!-- Tabelhovedrække -->
+              <tr>
+                <th>Meal Name</th>
+                <th>Meals</th>
+                <th>Water</th>
+                <th>kcal consumed</th>
+                <th>Protein</th>
+                <th>Fat</th>
+                <th>Fiber</th>
+              </tr>
+            </thead>
+            <tbody id="nutri">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="custom.js"></script>
+    <script src="nutri-reports.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', shownutrireport());
+      document.addEventListener('DOMContentLoaded', dashboard());
   </script>
   <br>
   <div id="dateInputContainer">
     <input type="date" id="dateInput">
 </div>
 
-
+<div id="pagetitle2">
+  24h view
+</div>
   <table id="timeTable">
     <thead>
         <tr>
