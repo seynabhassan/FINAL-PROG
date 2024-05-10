@@ -184,3 +184,22 @@ setFirstTimeLocal("mealtracker");
 setFirstTimeLocal("ind");
 
 Food.fetchFoodItem();
+
+//Geolokation for meal tracker
+const findMyCity = () => {
+  const status = document.querySelector('.status');
+
+  const success = (position) => {
+    console.log(position)
+  }
+
+  const error = () => {
+    status.textContent = 'Error: Lokation ikke fundet'; 
+  }
+
+  navigator.geolocation.getCurrentPosition(success, error);
+
+}
+
+document.querySelector('.find-city').addEventListener('click',findMyCity);
+
