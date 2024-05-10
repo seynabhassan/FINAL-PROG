@@ -202,3 +202,4 @@ const findMyCity = () => {
 }
 
 document.querySelector('.find-city').addEventListener('click',findMyCity);
+
