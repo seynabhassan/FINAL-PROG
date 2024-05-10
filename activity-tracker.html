@@ -91,17 +91,22 @@
         <p id="caloriesBurned"></p>
 
   </div>
-    
-  <div id="metabolism">
-<p>Basal Metabolic Rate:</p>
 
-
-<script src="activity-tracker.js">
-
-</script>
-
-</body>
-
-
-
-</html>
+<div id="metabolism">
+  <p>Basal Metabolic Rate:</p>
+  <form action="#">
+    <input type="radio" id="gender" value="masc"> Male<br>
+    <input type="radio" id="gender" value="fem"> Female<br>
+    Age:<br>
+    <input type="number" id="age" value="0"><br>
+    Weight:<br>
+    <input type="number" id="weight" value="0"><br>
+  </form>
+  <button type="resultButton"
+  onclick="document.getElementById('bmrResult').innerHTML = bmr">Results in MJ</button>
+  <p id="bmrResult">BMR</p>
+  
+  <script src="activity-tracker.js">
+  </script>
+  </body>
+  
