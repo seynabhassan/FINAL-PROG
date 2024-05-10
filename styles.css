@@ -484,3 +484,72 @@ th {
 }
 
 
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #DEF6D8; 
+}
+
+.login-box {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-header h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-box {
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.forgot-password {
+  margin-bottom: 15px;
+}
+
+.forgot-password a {
+  color: #555;
+  text-decoration: none;
+}
+
+.submit-button .submit-btn {
+  background-color: #79b870;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button .submit-btn:hover {
+  background-color: #45a049; 
+}
+
+.signup-link a {
+  color: #569bd5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-link a:hover {
+   text-decoration: underline;
+}
+
+.forgot-password a:hover{
+  text-decoration: underline;
+}
