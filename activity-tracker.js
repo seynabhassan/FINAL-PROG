@@ -165,10 +165,9 @@ if (age <=3 || gender == "fem") {
         }
     else if (age <=75 || gender == "fem") {
         bmr = 0.0410 * weight + 2.61
-        }
-
-if (age <=3 || gender == "masc") {
-    bmr = 0,249 * weight - 0,13
+    }
+    else if (age <=3 || gender == "masc") {
+    bmr = 0.249 * weight - 0.13
     }
     else if (age >=4 && age <=10 || gender == "masc") {
         bmr = 0.095 * weight + 2.11
