@@ -1,0 +1,486 @@
+/* Nulstil standardmarginer og -paddings, og brug Nunito-skrifttypen */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Nunito, sans-serif;
+}
+
+/* Styling af topsektionen med baggrundsbillede, radius og positionering */
+.top {
+  margin: 0 auto;
+  height: 105px;
+  background-color: #def6d8;
+  display: flex;
+}
+
+/* Inverter baggrundsbilledet i topsektionen */
+.top::after {
+  transform: scaleY(-1);
+}
+
+/* Juster overskriftsstil */
+h1 {
+  float: left;
+  margin: 0;
+}
+
+/* Juster styling af navigation */
+table {
+  border-collapse: separate !important;
+  border-spacing: 0 10px !important;
+}
+
+nav a {
+  display: inline-block;
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #ed007a;
+}
+
+/* Styling af header og navigation */
+header {
+  color: #91c789;
+  font-size: 16px;
+  float: left;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  width: 75%;
+  color: #91c789;
+  font-size: 12px;
+  display: block;
+  float: left;
+}
+
+/* Styling af menu og logo */
+#menu {
+  padding-top: 25px;
+  margin: 0;
+}
+
+
+
+#logoimg {
+  width: 110px;
+}
+
+/* Styling af indholdssektioner */
+#content {
+  margin: 20px 60px;
+  border: 1px solid #fff;
+}
+
+#content2 {
+  border: 1px solid #569bd5;
+  border-radius: 10px;
+  margin: 20px 60px;
+}
+
+#pagetitle {
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 20px;
+  float: left;
+  width: 50%;
+  margin-bottom: 40px;
+}
+
+#pagetitle-right {
+  font-size: 15px;
+  font-weight: 700;
+  padding: 20px 0;
+  float: left;
+  width: 44%;
+  text-align: right;
+  margin-bottom: 40px;
+}
+
+/* Styling af knapper */
+#bluebutton {
+  color: #fff;
+  margin: 0px;
+  padding: 0;
+  background-color: #569bd5;
+  width: 20px;
+  height: 21px;
+  float: right;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#greenbutton {
+  color: #fff;
+  margin: 0 5px !important;
+  padding: 0 !important;
+  background-color: #91c789;
+  width: 20px;
+  height: 21px;
+  float: right;
+  text-align: center;
+  border-radius: 15px;
+}
+
+/* Styling af dashboard og bokse */
+#dashboard {
+  margin-top: 100px;
+}
+
+#dashbox {
+  float: left;
+  margin: 15px;
+}
+
+#box {
+  width: 110px;
+  height: 110px;
+  margin: 0 5px;
+  border-radius: 10px;
+  border: 1px solid #569bd5;
+  text-align: center;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 4px 3px rgba(11, 11, 11, 0.2);
+  color: #9e9e9e;
+  font-size: 12px;
+  padding: 10px;
+}
+
+#box h2 {
+  color: #91c789;
+  font-size: 20px;
+  border-top: 1px dotted #91c789;
+  padding: 15px 0 0 0;
+}
+
+#boxtitle {
+  width: 70px;
+  padding: 5px;
+  font-size: 10px;
+  margin-bottom: -7px !important;
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+  background-color: #569bd5;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+table {
+  width: 100%;
+  border-spacing: 0px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  color: #252525;
+}
+
+th {
+  background-color: #fff;
+  color: #9e9e9e;
+  font-weight: 100 !important;
+  border-spacing: 0px !important;
+  text-align: center;
+}
+
+td {
+  padding: 8px;
+  text-align: center;
+}
+
+td:first-child,
+th:first-child {
+  border-radius: 10px 0px 0 10px;
+}
+
+td:last-child,
+th:last-child {
+  border-radius: 0px 10px 10px 0px;
+}
+
+tr {
+  border-radius: 10px;
+  background-color: #def6d8;
+}
+
+/* Styling af måltidsregistrering og ikoner */
+#mealtrackercontent {
+  margin: 10px;
+}
+
+#mealsource {
+  text-align: left;
+  padding-left: 0px !important;
+}
+
+#circle2 {
+  color: #fff;
+  margin: 0 5px;
+  padding: 0;
+  background-color: #f2fff5;
+  width: 23px;
+  height: 23px;
+  border: 1px solid #99d9de;
+  border-radius: 15px;
+}
+
+#dailycons p {
+  color: #fff;
+  margin: 1px;
+  padding: 1px;
+  width: 23px;
+  height: 10px;
+  font-size: 8px;
+  float: left;
+  text-align: center;
+  border-radius: 5px;
+}
+
+#dailycons-blue {
+  background-color: #569bd5;
+}
+
+#dailycons-orange {
+  background-color: #ffab40;
+}
+
+#dailycons-lightblue {
+  background-color: #99d9de;
+}
+
+#dailycons-red {
+  background-color: #f29a8a;
+}
+
+.material-icons {
+  font-size: 12px;
+  padding: 0 3px;
+  vertical-align: middle;
+}
+
+#greenicon {
+  color: #91c789;
+  cursor: pointer;
+}
+
+#blueicon {
+  color: #569bd5;
+  cursor: pointer;
+}
+
+#redicon {
+  color: #f29a8a;
+  cursor: pointer;
+}
+
+#mealsourceicon {
+  color: #fff;
+  margin: 0 5px;
+  padding: 0;
+  background-color: #f2fff5;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #99d9de;
+  border-radius: 15px;
+  float: left;
+}
+
+#timeseaten p {
+  color: #fff;
+  margin: 1px;
+  padding: 1px;
+  width: 60px;
+  margin: 0 auto;
+  height: 13px;
+  background-color: #99d9de;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* Styling af produkttitel, ernæring og produktbillede */
+#producttitle {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #def6d8;
+  border-radius: 10px;
+  height: 60px;
+  float: left;
+  background-color: #f2fff5;
+}
+
+#nutrition {
+  padding: 10px;
+  width: 322px;
+  border: 1px solid #def6d8;
+  border-radius: 10px;
+  height: 270px;
+  float: left;
+  text-align: center;
+  background-color: #f2fff5;
+}
+
+#productimage {
+  padding: 10px;
+  width: 322px;
+  border: 1px solid #def6d8;
+  border-radius: 10px;
+  height: 270px;
+  margin-left: 10px;
+  float: left;
+  display: block;
+  background-color: #f2fff5;
+  text-align: center;
+}
+
+/* Styling af fødevarerindhold og titler */
+#foodcontent {
+  width: 700px;
+  float: left;
+}
+
+#pagetitle2 {
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  padding: 0px;
+  float: left;
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+#nutrition td {
+  text-align: left;
+  padding: 4px;
+}
+
+#nutritiontable {
+  font-weight: 700;
+  width: 30%;
+}
+
+#nutritiontable2 {
+  width: 70%;
+}
+
+/* Styling af produkt-id, taxonomisk og fødevaregruppe */
+#productid,
+#taxonomisk,
+#fodevaregruppe {
+  border-right: 1px solid #def6d8;
+  display: block;
+  float: left;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 12px;
+  margin: 0 5px;
+}
+
+#productid {
+  width: 15%;
+}
+
+#taxonomisk {
+  width: 40%;
+}
+
+#fodevaregruppe {
+  width: 40%;
+  border-right: none !important;
+}
+
+#activity {
+  border-right: 1px solid #def6d8;
+  display: block;
+  float: left;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 12px;
+  margin: 0 5px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #def6d8;
+  color: rgb(0, 0, 0);
+}
+
+button {
+  background-color: #78d065;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#caloriesBurned {
+  font-size: 18px;
+  margin-top: 20px; 
+}
+
+#exercise {
+  padding: 60px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #def6d8;
+  border-radius: 10px;
+  height: 60px;
+  float: left;
+  background-color: #def6d8;
+}
+
+#metabolism {
+  padding: 50px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #def6d8;
+  border-radius: 10px;
+  height: 260px;
+  float: left;
+  background-color: #def6d8;
+}
+
+table, th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #def6d8;
+}
+/* Styling to align the date input to the right */
+#dateInputContainer {
+  text-align: right;
+   margin: 20px 20px 20px 0;
+}
+
+
