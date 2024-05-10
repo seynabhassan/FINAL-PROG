@@ -20,12 +20,10 @@ class MealConsumption {
     selectElement.innerHTML = "";
     let i;
     for (i = 0; i < ml.length; i++) {
-      if (ml[i].mealtype == mtype) {
         let option = document.createElement("option");
         option.text = ml[i].mealName;
         option.value = i;
         selectElement.add(option);
-      }
     }
 
     modal.show();
