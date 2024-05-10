@@ -184,6 +184,3 @@ setFirstTimeLocal("mealtracker");
 setFirstTimeLocal("ind");
 
 Food.fetchFoodItem();
-
-
-

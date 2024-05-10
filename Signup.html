@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="background">
     <div class="login-box">
         <div class="signup-header">
             <h2>Signup</h2>
         </div>
-        <form class="signup-form" action="/signup" method="POST">
+        <form class="signup-form" id="signup-form">
             <div class="input-box">
                 <input type="text" class="input-field" placeholder="Username" autocomplete="off" required id="username" name="username">
             </div>
@@ -19,10 +20,10 @@
                 <input type="password" class="input-field" placeholder="Password" autocomplete="off" required id="password" name="password">
             </div>
             <div class="input-box">
-                <input type="number" class="input-field" placeholder="Age" min="0" required id="age" name="age">
+                <input type="number" class="input-field" placeholder="Weight" autocomplete="off" required id="weight" name="weight">
             </div>
             <div class="input-box">
-                <input type="number" class="input-field" placeholder="Weight" autocomplete="off" required id="weight" name="weight">
+                <input type="number" class="input-field" placeholder="Age" min="0" required id="age" name="age">
             </div>
             <div class="input-box">
                 <label for="gender">Please select your gender:</label>
@@ -39,6 +40,7 @@
         <div class="signup-link">
             <p style="font-size: 10px;">Already have an account? <a href="Login.html">Log in</a></p>
         </div>
+    </div>
     </div>
 </body>
 </html>
