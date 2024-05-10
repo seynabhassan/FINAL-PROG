@@ -477,9 +477,13 @@ th, td {
 th {
   background-color: #def6d8;
 }
-/* Styling to align the date input to the right */
+/* Styling to align the date and time input to the right */
 #dateInputContainer {
   text-align: right;
    margin: 20px 20px 20px 0;
 }
 
+#hourInputContainer{
+  text-align: right;
+  margin: 20 px 20px 20px 0;
+}

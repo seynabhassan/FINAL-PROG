@@ -244,3 +244,54 @@ function shownutrireport() { // Fetch data from localStorage
   // Update the HTML content of the specified element
   document.getElementById("nutri").innerHTML = tdata;
 }
+
+function updateDailyNutriTables() {
+  let mealTrackData = JSON.parse(localStorage.getItem('mealtracker'));
+  console.log('Meal Track Data:', mealTrackData); // Check what's actually in meal tracker data
+
+  let mealData = JSON.parse(localStorage.getItem('meal'));
+  console.log('Meal Data:', mealData); // Check the meal data
+
+  let selectedDate = new Date(document.getElementById('dayInput').value);
+  let dateString = selectedDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+
+  console.log('Selected Date:', dateString); // Ensure date is correctly captured
+
+  let filteredMeals = mealTrackData.filter(m => m.addedOn === dateString);
+  console.log('Filtered Meals:', filteredMeals); // Check if filtering is working
+
+  const dailyNutriBody = document.getElementById('hourlyNutri');
+  dailyNutriBody.innerHTML = ''; // Clear previous entries
+
+  if (filteredMeals.length === 0) {
+    console.log('No meals found for selected date');
+  }
+
+  filteredMeals.forEach(meal => {
+    let mealDetails = mealData[meal.mealIndex]; // Assuming mealIndex correlates correctly
+    if (!mealDetails) {
+      console.log('No details found for meal index:', meal.mealIndex);
+      return;
+    }
+
+    let row = dailyNutriBody.insertRow();
+
+    let cellTime = row.insertCell(0);
+    cellTime.textContent = meal.ctime; // Display consumption time
+
+    let cellEnergy = row.insertCell(1);
+    cellEnergy.textContent = `${(mealDetails.totalKcal / mealDetails.weight * meal.cweight).toFixed(2)} kcal`;
+
+    let cellWater = row.insertCell(2);
+    cellWater.textContent = '0 ml'; // Placeholder, update based on actual data if available
+
+    let cellBurned = row.insertCell(3);
+    cellBurned.textContent = '0 kcal'; // Placeholder, update based on actual data if available
+
+    let cellNet = row.insertCell(4);
+    cellNet.textContent = '0 kcal'; // Placeholder, calculate net calorie if needed
+  });
+}
+
+// Event listener to trigger data update
+document.getElementById('dayInput').addEventListener('change', updateDailyNutriTables);
