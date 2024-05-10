@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <title>NutriTracker</title>
   <!-- Link to the Nunito font -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -26,6 +25,10 @@
           <a href="nutri-reports.html">Nutri Report</a>
           <a href="activity-tracker.html">Activity Tracker</a>
           <a href="food-inspector.html">Food Inspector</a>
+          <!-- Add logout button -->
+          <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+          </form>
         </div>
       </nav>
     </div>
@@ -39,20 +42,19 @@
     <input type="date" id="dateInput">
 </div>
 
-
-  <table id="timeTable">
-    <thead>
-        <tr>
-            <th>Time</th>
-            <th>Energy Intake (kcal)</th>
-            <th>Water Intake (ml)</th>
-            <th>Calories Burned</th>
-            <th>Net Calorie</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Timerne indsættes her -->
-    </tbody>
+<table id="timeTable">
+  <thead>
+      <tr>
+          <th>Time</th>
+          <th>Energy Intake (kcal)</th>
+          <th>Water Intake (ml)</th>
+          <th>Calories Burned</th>
+          <th>Net Calorie</th>
+      </tr>
+  </thead>
+  <tbody>
+      <!-- Timerne indsættes her -->
+  </tbody>
 </table>
 <script>
 document.getElementById('dateInput').addEventListener('change', function() {
