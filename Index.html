@@ -19,13 +19,10 @@
     </header>
     <nav>
       <div id="menu">
-        <a href="Index.html">Daily Nutri</a>
+        <a href="index.html">Daily Nutri</a>
         <a href="meal-creator.html">Meal Creator</a>
         <a href="meal-tracker.html">Meal Tracker</a>
         <a href="activity-tracker.html">Activity Tracker</a>
-        <!-- Add logout button -->
-        <form action="/logout" method="POST">
-          <button type="submit">Logout</button>
         </form>
       </div>
     </nav>
@@ -47,6 +44,28 @@
           </tr>
         </thead>
         <tbody id="monthlyMeals"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="content">
+    <div id="pagetitle">24-Hour View</div>
+    <div id="dateInputContainer">
+      <input type="date" id="dateInput">
+    </div>
+    <div id="mealTableContainer">
+      <table id="dailyMeals">
+        <thead>
+          <tr>
+            <th>Meal Name</th>
+            <th>Time Created</th>
+            <th>Energy (kcal)</th>
+            <th>Water Intake (ml)</th>
+            <th>Calories Burned</th>
+            <th>Net Calories</th>
+          </tr>
+        </thead>
+        <tbody id="dailyMealsBody"></tbody>
       </table>
     </div>
   </div>
@@ -77,6 +96,38 @@
           const cellNet = row.insertCell(4);
   
           cellName.textContent = meal.mealName;
+          cellEnergy.textContent = meal.totalKcal;
+          cellWater.textContent = meal.waterIntake || 'N/A'; // Assuming waterIntake property exists in Meal class
+          cellBurned.textContent = meal.caloriesBurned || 'N/A'; // Assuming caloriesBurned property exists in Meal class
+          cellNet.textContent = meal.netCalories || 'N/A'; // Assuming netCalories property exists in Meal class
+        });
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('dateInput').addEventListener('change', function() {
+        const selectedDate = this.value;
+        const tableBody = document.getElementById('dailyMealsBody');
+        tableBody.innerHTML = ''; // Clear previous content
+
+        // Load meals from localStorage
+        const meals = JSON.parse(localStorage.getItem("meal")) || [];
+
+        // Filter meals for the selected date
+        const filteredMeals = meals.filter(meal => meal.addedOn.split('T')[0] === selectedDate);
+
+        // Display filtered meals in the table
+        filteredMeals.forEach(meal => {
+          const row = tableBody.insertRow();
+          const cellName = row.insertCell(0);
+          const cellTime = row.insertCell(1);
+          const cellEnergy = row.insertCell(2);
+          const cellWater = row.insertCell(3);
+          const cellBurned = row.insertCell(4);
+          const cellNet = row.insertCell(5);
+
+          cellName.textContent = meal.mealName;
+          cellTime.textContent = meal.timeAdded; // Using the timeAdded property for time created
           cellEnergy.textContent = meal.totalKcal;
           cellWater.textContent = meal.waterIntake || 'N/A'; // Assuming waterIntake property exists in Meal class
           cellBurned.textContent = meal.caloriesBurned || 'N/A'; // Assuming caloriesBurned property exists in Meal class
