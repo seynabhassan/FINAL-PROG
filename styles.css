@@ -451,7 +451,8 @@ button:hover {
   border-radius: 10px;
   height: 60px;
   float: left;
-  background-color: #f2fff5;
+  background-color: #def6d8;
+
 }
 
 #metabolism {
@@ -460,9 +461,10 @@ button:hover {
   width: 100%;
   border: 1px solid #def6d8;
   border-radius: 10px;
-  height: 60px;
+  height: 260px;
   float: left;
-  background-color: #f2fff5;
+  background-color: #def6d8;
+
 }
 
 table, th, td {
@@ -477,7 +479,6 @@ th, td {
 th {
   background-color: #def6d8;
 }
-/* Styling to align the date input to the right */
 #dateInputContainer {
   text-align: right;
    margin: 20px 20px 20px 0;
@@ -552,4 +553,8 @@ th {
 
 .forgot-password a:hover{
   text-decoration: underline;
+}
+#hourInputContainer{
+  text-align: right;
+  margin: 20 px 20px 20px 0;
 }

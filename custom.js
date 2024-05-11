@@ -203,3 +203,95 @@ const findMyCity = () => {
 
 document.querySelector('.find-city').addEventListener('click',findMyCity);
 
+function shownutrireport() { // Fetch data from localStorage
+  let mt = JSON.parse(localStorage.getItem("mealtracker"));
+  let ml = JSON.parse(localStorage.getItem("meal"));
+  let uniqueDates = [...new Set(mt.map(item => item.addedOn))];
+  uniqueDates.sort(compareDates);
+
+  // Initialize variables for total values
+  let tdata = "";
+  let tenergy = 0;
+  let tp = 0;
+  let tfat = 0;
+  let tfiber = 0;
+  let twater = 0;
+  let mtData;
+
+  uniqueDates.forEach(dt => {
+    tenergy = 0;
+    tp = 0;
+    tfat = 0;
+    tfiber = 0;
+    twater = 0;
+
+    mtData = mt.filter(item => item.addedOn === dt);
+
+    // Calculate total values for each nutrient
+    mtData.forEach(e => {
+      tenergy += ml[e.mealIndex].totalKcal / ml[e.mealIndex].weight * e.cweight;
+      tp += ml[e.mealIndex].protein / ml[e.mealIndex].weight * e.cweight;
+      tfat += ml[e.mealIndex].fat / ml[e.mealIndex].weight * e.cweight;
+      tfiber += ml[e.mealIndex].fiber / ml[e.mealIndex].weight * e.cweight;
+      if (ml[e.mealIndex].mealtype == "liquid") twater += e.cweight;
+    });
+
+    // Build the HTML table row for each date
+    tdata += `<tr><td>${convertDateFormat(dt)}</td><td>${mtData.length} Meals</td><td>${(twater / 1000).toFixed(2)} L </td><td>${(tenergy).toFixed(2)} Kcal</td><td>${tp.toFixed(2)}</td>
+            <td>${tfat.toFixed(2)}</td><td>${tfiber.toFixed(2)}</td></tr>`;
+  });
+
+  // Update the HTML content of the specified element
+  document.getElementById("nutri").innerHTML = tdata;
+}
+
+function updateDailyNutriTables() {
+  let mealTrackData = JSON.parse(localStorage.getItem('mealtracker'));
+  console.log('Meal Track Data:', mealTrackData); // Check what's actually in meal tracker data
+
+  let mealData = JSON.parse(localStorage.getItem('meal'));
+  console.log('Meal Data:', mealData); // Check the meal data
+
+  let selectedDate = new Date(document.getElementById('dayInput').value);
+  let dateString = selectedDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+
+  console.log('Selected Date:', dateString); // Ensure date is correctly captured
+
+  let filteredMeals = mealTrackData.filter(m => m.addedOn === dateString);
+  console.log('Filtered Meals:', filteredMeals); // Check if filtering is working
+
+  const dailyNutriBody = document.getElementById('hourlyNutri');
+  dailyNutriBody.innerHTML = ''; // Clear previous entries
+
+  if (filteredMeals.length === 0) {
+    console.log('No meals found for selected date');
+  }
+
+  filteredMeals.forEach(meal => {
+    let mealDetails = mealData[meal.mealIndex]; // Assuming mealIndex correlates correctly
+    if (!mealDetails) {
+      console.log('No details found for meal index:', meal.mealIndex);
+      return;
+    }
+
+    let row = dailyNutriBody.insertRow();
+
+    let cellTime = row.insertCell(0);
+    cellTime.textContent = meal.ctime; // Display consumption time
+
+    let cellEnergy = row.insertCell(1);
+    cellEnergy.textContent = `${(mealDetails.totalKcal / mealDetails.weight * meal.cweight).toFixed(2)} kcal`;
+
+    let cellWater = row.insertCell(2);
+    cellWater.textContent = '0 ml'; // Placeholder, update based on actual data if available
+
+    let cellBurned = row.insertCell(3);
+    cellBurned.textContent = '0 kcal'; // Placeholder, update based on actual data if available
+
+    let cellNet = row.insertCell(4);
+    cellNet.textContent = '0 kcal'; // Placeholder, calculate net calorie if needed
+  });
+}
+
+// Event listener to trigger data update
+document.getElementById('dayInput').addEventListener('change', updateDailyNutriTables);
