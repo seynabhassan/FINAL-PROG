@@ -97,9 +97,9 @@
   
           cellName.textContent = meal.mealName;
           cellEnergy.textContent = meal.totalKcal;
-          cellWater.textContent = meal.waterIntake || 'N/A'; // Assuming waterIntake property exists in Meal class
-          cellBurned.textContent = meal.caloriesBurned || 'N/A'; // Assuming caloriesBurned property exists in Meal class
-          cellNet.textContent = meal.netCalories || 'N/A'; // Assuming netCalories property exists in Meal class
+          cellWater.textContent = meal.waterIntake || 'N/A';
+          cellBurned.textContent = meal.caloriesBurned || 'N/A'; 
+          cellNet.textContent = meal.netCalories || 'N/A'; 
         });
       });
     });
@@ -127,11 +127,11 @@
           const cellNet = row.insertCell(5);
 
           cellName.textContent = meal.mealName;
-          cellTime.textContent = meal.timeAdded; // Using the timeAdded property for time created
+          cellTime.textContent = meal.timeAdded; 
           cellEnergy.textContent = meal.totalKcal;
-          cellWater.textContent = meal.waterIntake || 'N/A'; // Assuming waterIntake property exists in Meal class
-          cellBurned.textContent = meal.caloriesBurned || 'N/A'; // Assuming caloriesBurned property exists in Meal class
-          cellNet.textContent = meal.netCalories || 'N/A'; // Assuming netCalories property exists in Meal class
+          cellWater.textContent = meal.waterIntake || 'N/A'; 
+          cellBurned.textContent = meal.caloriesBurned || 'N/A'; 
+          cellNet.textContent = meal.netCalories || 'N/A';
         });
       });
     });
