@@ -89,22 +89,19 @@ class MealConsumption {
     let tdata = "";
     mt.forEach(element => {
       tdata += `
-        <tr>
-            <td>${i + 1}</td>
-            <td id="mealsource"><p id="mealsourceicon">+</p> ${ml[element.mealIndex].mealName}</td>
-            <td>${ml[element.mealIndex].mealtype}</td>
-            <td>${element.cweight} g<br>
-            ${(ml[element.mealIndex].totalKcal / ml[element.mealIndex].weight * element.cweight).toFixed(2)}Kcal</td>
-            <td>${convertDateFormat(element.addedOn)}<br>${element.ctime} </td>
-            <td id="dailycons"> <p id="dailycons-blue">30g</p>  <p id="dailycons-orange">12g</p>  
-            <p id="dailycons-lightblue">2mg</p>  <p id="dailycons-red">15</p>  
-          </td>
-          <td> 
-            <i id="greenicon" onclick='showind(${element.mealIndex})' class="material-icons">book</i>
-            <i id="blueicon" class="material-icons" onclick='MealConsumption.edittracker(${i})'>create</i>
-            <i id="redicon" onclick='MealConsumption.delmealtracker(${i})' class="material-icons">delete</i>
-            </td>
-        </tr>`;
+      <tr>
+      <td>${i + 1}</td>
+      <td id="mealsource"><p id="mealsourceicon">+</p> ${ml[element.mealIndex].mealName}</td>
+      <td>${element.cweight} g<br>
+      ${(ml[element.mealIndex].totalKcal / ml[element.mealIndex].weight * element.cweight).toFixed(2)}Kcal</td>
+      <td>${convertDateFormat(element.addedOn)}<br>${element.ctime} </td>
+    </td>
+    <td> 
+      <i id="greenicon" onclick='showind(${element.mealIndex})' class="material-icons">book</i>
+      <i id="blueicon" class="material-icons" onclick='MealConsumption.edittracker(${i})'>create</i>
+      <i id="redicon" onclick='MealConsumption.delmealtracker(${i})' class="material-icons">delete</i>
+      </td>
+  </tr>`;
       i++;
     });
 
