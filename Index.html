@@ -57,16 +57,16 @@
         const selectedMonth = new Date(this.value);
         const tableBody = document.getElementById('monthlyMeals');
         tableBody.innerHTML = ''; // Clear previous content
-
+  
         // Load meals from localStorage
-        const meals = JSON.parse(localStorage.getItem("meals")) || [];
-
+        const meals = JSON.parse(localStorage.getItem("meal")) || [];
+  
         // Filter meals for the selected month
         const filteredMeals = meals.filter(meal => {
           const mealDate = new Date(meal.addedOn);
           return mealDate.getMonth() === selectedMonth.getMonth() && mealDate.getFullYear() === selectedMonth.getFullYear();
         });
-
+  
         // Display filtered meals in the table
         filteredMeals.forEach(meal => {
           const row = tableBody.insertRow();
@@ -75,15 +75,16 @@
           const cellWater = row.insertCell(2);
           const cellBurned = row.insertCell(3);
           const cellNet = row.insertCell(4);
-
+  
           cellName.textContent = meal.mealName;
           cellEnergy.textContent = meal.totalKcal;
-          cellWater.textContent = meal.waterIntake; // Assuming waterIntake property exists in Meal class
-          cellBurned.textContent = meal.caloriesBurned; // Assuming caloriesBurned property exists in Meal class
-          cellNet.textContent = meal.netCalories; // Assuming netCalories property exists in Meal class
+          cellWater.textContent = meal.waterIntake || 'N/A'; // Assuming waterIntake property exists in Meal class
+          cellBurned.textContent = meal.caloriesBurned || 'N/A'; // Assuming caloriesBurned property exists in Meal class
+          cellNet.textContent = meal.netCalories || 'N/A'; // Assuming netCalories property exists in Meal class
         });
       });
     });
   </script>
+  
 </body>
 </html>
