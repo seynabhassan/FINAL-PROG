@@ -1,5 +1,5 @@
-class Meal { // Representing meals in the meal creator
-  constructor(mealName, totalKcal, weight, protein, fat, fiber, addedOn, timeEaten, ingredients) {
+class Meal {
+  constructor(mealName, totalKcal, weight, protein, fat, fiber, addedOn, timeEaten, ingredients, timeAdded) {
     this.mealName = mealName;
     this.totalKcal = totalKcal;
     this.weight = weight;
@@ -9,6 +9,7 @@ class Meal { // Representing meals in the meal creator
     this.addedOn = addedOn;
     this.timeEaten = timeEaten;
     this.ingredients = ingredients;
+    this.timeAdded = timeAdded; // New property to store the time added
   }
 
   // Method to add meal model with a given meal type
@@ -92,7 +93,7 @@ class Meal { // Representing meals in the meal creator
       tfiber += Number(e.fiber);
     });
 
-    ml[m] = new Meal(mealName.value, tenergy, tqty, tp, tfat, tfiber, addedOn.value, timeEaten.value, ind);
+    ml[m] = new Meal(mealName.value, tenergy, tqty, tp, tfat, tfiber, addedOn.value, timeEaten.value, ind, new Date().toLocaleTimeString());
     localStorage.setItem("meal", JSON.stringify(ml)); // Saving the meal 
     localStorage.setItem("ind", "[]");
     Meal.showmeal(); // Displaying meals
@@ -122,6 +123,7 @@ class Meal { // Representing meals in the meal creator
           <td>${convertDateFormat(ml[i].addedOn)}</td>
           <td>${ml[i].ingredients.length}</td>
           <td id="timeseaten"> <p>${ml[i].timeEaten}</p> </td>
+          <td>${ml[i].timeAdded}</td> <!-- Displaying time added -->
           <td> 
               <i id="greenicon" onclick='showind(${i})' class="material-icons">book</i>
               <i id="blueicon" onclick='Meal.editmeal(${i})' class="material-icons">create</i>
