@@ -11,119 +11,131 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="top">
-      <header>
-        <p id="logo">
-          <img id="logoimg" src="logo.png" alt="NutriTracker Logo">
-        </p>
-      </header>
-      <nav>
-        <div id="menu">
-          <a href="Index.html">Daily Nutri</a>
-          <a href="meal-creator.html">Meal Creator</a>
-          <a href="meal-tracker.html">Meal Tracker</a>
-          <a href="activity-tracker.html">Activity Tracker</a>
-          <!-- Add logout button -->
-          <form action="/logout" method="POST">
-            <button type="submit">Logout</button>
-          </form>
-        </div>
-      </nav>
+  <div class="top">
+    <header>
+      <p id="logo">
+        <img id="logoimg" src="logo.png" alt="NutriTracker Logo">
+      </p>
+    </header>
+    <nav>
+      <div id="menu">
+        <a href="index.html">Daily Nutri</a>
+        <a href="meal-creator.html">Meal Creator</a>
+        <a href="meal-tracker.html">Meal Tracker</a>
+        <a href="activity-tracker.html">Activity Tracker</a>
+        </form>
+      </div>
+    </nav>
+  </div>
+  <div id="content">
+    <div id="pagetitle">Monthly View</div>
+    <div id="dateInputContainer">
+      <input type="month" id="monthInput">
     </div>
-    <div id="content">
-      <div id="pagetitle">Monthly View</div>
-      <div id="dateInputContainer">
-        <input type="date" id="monthInput">
-      </div>
-      <div id="nutri-reports">
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Energy Intake (kcal)</th>
-              <th>Water Intake (ml)</th>
-              <th>Calories Burned</th>
-              <th>Net Calorie</th>
-            </tr>
-          </thead>
-          <tbody id="monthlyNutri"></tbody>
-        </table>
-      </div>
-      <div id="pagetitle2">24h View</div>
-      <div id="hourInputContainer">
-      <div>
-        <input type="date" id="dayInput">
-        <table id="timeTable">
-        </div>
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Energy Intake (kcal)</th>
-              <th>Water Intake (ml)</th>
-              <th>Calories Burned</th>
-              <th>Net Calorie</th>
-            </tr>
-          </thead>
-          <tbody id="hourlyNutri"></tbody>
-        </table>
-      </div>
+    <div id="mealTableContainer">
+      <table id="mealTable">
+        <thead>
+          <tr>
+            <th>Meal Name</th>
+            <th>Energy (kcal)</th>
+            <th>Water Intake (ml)</th>
+            <th>Calories Burned</th>
+            <th>Net Calories</th>
+          </tr>
+        </thead>
+        <tbody id="monthlyMeals"></tbody>
+      </table>
     </div>
-    <script src="custom.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        shownutrireport();
-        dashboard();
-      });
-    </script>
-<script>
-document.getElementById('dateInput').addEventListener('change', function() {
-  const selectedDate = new Date(this.value);
-  const tableBody = document.getElementById('timeTable').getElementsByTagName('tbody')[0];
-  tableBody.innerHTML = ''; // Ryd tidligere indhold
+  </div>
+
+  <div id="content">
+    <div id="pagetitle">24-Hour View</div>
+    <div id="dateInputContainer">
+      <input type="date" id="dateInput">
+    </div>
+    <div id="mealTableContainer">
+      <table id="dailyMeals">
+        <thead>
+          <tr>
+            <th>Meal Name</th>
+            <th>Time Created</th>
+            <th>Energy (kcal)</th>
+            <th>Water Intake (ml)</th>
+            <th>Calories Burned</th>
+            <th>Net Calories</th>
+          </tr>
+        </thead>
+        <tbody id="dailyMealsBody"></tbody>
+      </table>
+    </div>
+  </div>
+  <script src="custom.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('monthInput').addEventListener('change', function() {
         const selectedMonth = new Date(this.value);
-        const tableBody = document.getElementById('monthlyNutri');
+        const tableBody = document.getElementById('monthlyMeals');
         tableBody.innerHTML = ''; // Clear previous content
-
-        // Assuming each month needs to have the data for each day listed:
-        const daysInMonth = new Date(selectedMonth.getFullYear(), selectedMonth.getMonth() + 1, 0).getDate();
-
-        for (let day = 1; day <= daysInMonth; day++) {
+  
+        // Load meals from localStorage
+        const meals = JSON.parse(localStorage.getItem("meal")) || [];
+  
+        // Filter meals for the selected month
+        const filteredMeals = meals.filter(meal => {
+          const mealDate = new Date(meal.addedOn);
+          return mealDate.getMonth() === selectedMonth.getMonth() && mealDate.getFullYear() === selectedMonth.getFullYear();
+        });
+  
+        // Display filtered meals in the table
+        filteredMeals.forEach(meal => {
           const row = tableBody.insertRow();
-          const cellDate = row.insertCell(0);
+          const cellName = row.insertCell(0);
           const cellEnergy = row.insertCell(1);
           const cellWater = row.insertCell(2);
           const cellBurned = row.insertCell(3);
           const cellNet = row.insertCell(4);
-
-          const date = new Date(selectedMonth.getFullYear(), selectedMonth.getMonth(), day);
-          cellDate.textContent = date.toLocaleDateString('en-US');
-          cellEnergy.textContent = '0 kcal';
-          cellWater.textContent = '0 ml';
-          cellBurned.textContent = '0 kcal';
-          cellNet.textContent = '0 kcal';
-        }
-      });
-
-      document.getElementById('dayInput').addEventListener('change', function() {
-        const selectedDay = new Date(this.value);
-        const tableBody = document.getElementById('hourlyNutri');
-        tableBody.innerHTML = '';
-        for (let hour = 0; 0 < 24; hour++) {
-          const row = tableBody.insertRow();
-          const cellTime = row.insertCell(0);
-          const cellEnergy = row.insertCell(1);
-          const cellWater = row.insertCell(2);
-          const cellBurned = row.insertCell(3);
-          const cellNet = row.insertCell(4);
-          selectedDay.setHours(hour);
-          cellTime.textContent = selectedDay.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-          cellEnergy.textContent = '0 kcal';
-          cellWater.textContent = '0 ml';
-          cellBurned.textContent = '0 kcal';
-          cellNet.textContent = '0 kcal';
-        }
+  
+          cellName.textContent = meal.mealName;
+          cellEnergy.textContent = meal.totalKcal;
+          cellWater.textContent = meal.waterIntake || 'N/A';
+          cellBurned.textContent = meal.caloriesBurned || 'N/A'; 
+          cellNet.textContent = meal.netCalories || 'N/A'; 
+        });
       });
     });
-    </script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('dateInput').addEventListener('change', function() {
+        const selectedDate = this.value;
+        const tableBody = document.getElementById('dailyMealsBody');
+        tableBody.innerHTML = ''; // Clear previous content
+
+        // Load meals from localStorage
+        const meals = JSON.parse(localStorage.getItem("meal")) || [];
+
+        // Filter meals for the selected date
+        const filteredMeals = meals.filter(meal => meal.addedOn.split('T')[0] === selectedDate);
+
+        // Display filtered meals in the table
+        filteredMeals.forEach(meal => {
+          const row = tableBody.insertRow();
+          const cellName = row.insertCell(0);
+          const cellTime = row.insertCell(1);
+          const cellEnergy = row.insertCell(2);
+          const cellWater = row.insertCell(3);
+          const cellBurned = row.insertCell(4);
+          const cellNet = row.insertCell(5);
+
+          cellName.textContent = meal.mealName;
+          cellTime.textContent = meal.timeAdded; 
+          cellEnergy.textContent = meal.totalKcal;
+          cellWater.textContent = meal.waterIntake || 'N/A'; 
+          cellBurned.textContent = meal.caloriesBurned || 'N/A'; 
+          cellNet.textContent = meal.netCalories || 'N/A';
+        });
+      });
+    });
+  </script>
+  
 </body>
+</html>
