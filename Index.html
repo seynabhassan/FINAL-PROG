@@ -6,7 +6,7 @@
   <title>NutriTracker</title>
   <!-- Link to the Nunito font -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.google.com/specimen/Nunito" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <!-- Link to external stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -14,7 +14,7 @@
     <div class="top">
       <header>
         <p id="logo">
-          <img id="logoimg" src="logo.png">
+          <img id="logoimg" src="logo.png" alt="NutriTracker Logo">
         </p>
       </header>
       <nav>
@@ -32,54 +32,100 @@
         </div>
       </nav>
     </div>
-  </div>
-  <script src="custom.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', dashboard());
-  </script>
-  <br>
-  <div id="dateInputContainer">
-    <input type="date" id="dateInput">
-</div>
-
-<table id="timeTable">
-  <thead>
-      <tr>
-          <th>Time</th>
-          <th>Energy Intake (kcal)</th>
-          <th>Water Intake (ml)</th>
-          <th>Calories Burned</th>
-          <th>Net Calorie</th>
-      </tr>
-  </thead>
-  <tbody>
-      <!-- Timerne indsættes her -->
-  </tbody>
-</table>
+    <div id="content">
+      <div id="pagetitle">Monthly View</div>
+      <div id="dateInputContainer">
+        <input type="date" id="monthInput">
+      </div>
+      <div id="nutri-reports">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Energy Intake (kcal)</th>
+              <th>Water Intake (ml)</th>
+              <th>Calories Burned</th>
+              <th>Net Calorie</th>
+            </tr>
+          </thead>
+          <tbody id="monthlyNutri"></tbody>
+        </table>
+      </div>
+      <div id="pagetitle2">24h View</div>
+      <div id="hourInputContainer">
+      <div>
+        <input type="date" id="dayInput">
+        <table id="timeTable">
+        </div>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Energy Intake (kcal)</th>
+              <th>Water Intake (ml)</th>
+              <th>Calories Burned</th>
+              <th>Net Calorie</th>
+            </tr>
+          </thead>
+          <tbody id="hourlyNutri"></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="custom.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        shownutrireport();
+        dashboard();
+      });
+    </script>
 <script>
 document.getElementById('dateInput').addEventListener('change', function() {
   const selectedDate = new Date(this.value);
   const tableBody = document.getElementById('timeTable').getElementsByTagName('tbody')[0];
   tableBody.innerHTML = ''; // Ryd tidligere indhold
+      document.getElementById('monthInput').addEventListener('change', function() {
+        const selectedMonth = new Date(this.value);
+        const tableBody = document.getElementById('monthlyNutri');
+        tableBody.innerHTML = ''; // Clear previous content
 
-  for (let hour = 0; hour < 24; hour++) {
-      const row = tableBody.insertRow();
-      const cellHour = row.insertCell(0);
-      const cellEnergy = row.insertCell(1);
-      const cellWater = row.insertCell(2);
-      const cellBurned = row.insertCell(3);
-      const cellNet = row.insertCell(4);
+        // Assuming each month needs to have the data for each day listed:
+        const daysInMonth = new Date(selectedMonth.getFullYear(), selectedMonth.getMonth() + 1, 0).getDate();
 
-      selectedDate.setHours(hour, 0, 0, 0); // Sæt time for hver række
-      cellHour.textContent = selectedDate.toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' });
+        for (let day = 1; day <= daysInMonth; day++) {
+          const row = tableBody.insertRow();
+          const cellDate = row.insertCell(0);
+          const cellEnergy = row.insertCell(1);
+          const cellWater = row.insertCell(2);
+          const cellBurned = row.insertCell(3);
+          const cellNet = row.insertCell(4);
 
-      // Eksempeldata - disse kan tilpasses eller opdateres dynamisk
-      cellEnergy.textContent = '0 kcal'; // Energiindtag
-      cellWater.textContent = '0 ml';   // Vandindtag
-      cellBurned.textContent = '0 kcal'; // Kalorier brændt
-      cellNet.textContent = '0 kcal'; // Nettokalorier
-  }
-});
-</script>
+          const date = new Date(selectedMonth.getFullYear(), selectedMonth.getMonth(), day);
+          cellDate.textContent = date.toLocaleDateString('en-US');
+          cellEnergy.textContent = '0 kcal';
+          cellWater.textContent = '0 ml';
+          cellBurned.textContent = '0 kcal';
+          cellNet.textContent = '0 kcal';
+        }
+      });
+
+      document.getElementById('dayInput').addEventListener('change', function() {
+        const selectedDay = new Date(this.value);
+        const tableBody = document.getElementById('hourlyNutri');
+        tableBody.innerHTML = '';
+        for (let hour = 0; 0 < 24; hour++) {
+          const row = tableBody.insertRow();
+          const cellTime = row.insertCell(0);
+          const cellEnergy = row.insertCell(1);
+          const cellWater = row.insertCell(2);
+          const cellBurned = row.insertCell(3);
+          const cellNet = row.insertCell(4);
+          selectedDay.setHours(hour);
+          cellTime.textContent = selectedDay.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+          cellEnergy.textContent = '0 kcal';
+          cellWater.textContent = '0 ml';
+          cellBurned.textContent = '0 kcal';
+          cellNet.textContent = '0 kcal';
+        }
+      });
+    });
+    </script>
 </body>
-</html>
