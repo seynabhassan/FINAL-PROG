@@ -76,8 +76,8 @@
         shownutrireport();
         dashboard();
       });
+    </script>
 
- main
 <table id="timeTable">
   <thead>
       <tr>
@@ -126,7 +126,7 @@ document.getElementById('dateInput').addEventListener('change', function() {
         const selectedDay = new Date(this.value);
         const tableBody = document.getElementById('hourlyNutri');
         tableBody.innerHTML = '';
-        for (let hour = 0; hour < 24; hour++) {
+        for (let hour = 0; 0 < 24; hour++) {
           const row = tableBody.insertRow();
           const cellTime = row.insertCell(0);
           const cellEnergy = row.insertCell(1);
@@ -141,6 +141,6 @@ document.getElementById('dateInput').addEventListener('change', function() {
           cellNet.textContent = '0 kcal';
         }
       });
+    });
     </script>
 </body>
-</html>
