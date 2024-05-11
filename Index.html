@@ -25,6 +25,10 @@
           <a href="nutri-reports.html">Nutri Report</a>
           <a href="activity-tracker.html">Activity Tracker</a>
           <a href="food-inspector.html">Food Inspector</a>
+          <!-- Add logout button -->
+          <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+          </form>
         </div>
       </nav>
     </div>
@@ -72,7 +76,27 @@
         shownutrireport();
         dashboard();
       });
+    </script>
 
+<table id="timeTable">
+  <thead>
+      <tr>
+          <th>Time</th>
+          <th>Energy Intake (kcal)</th>
+          <th>Water Intake (ml)</th>
+          <th>Calories Burned</th>
+          <th>Net Calorie</th>
+      </tr>
+  </thead>
+  <tbody>
+      <!-- Timerne indsættes her -->
+  </tbody>
+</table>
+<script>
+document.getElementById('dateInput').addEventListener('change', function() {
+  const selectedDate = new Date(this.value);
+  const tableBody = document.getElementById('timeTable').getElementsByTagName('tbody')[0];
+  tableBody.innerHTML = ''; // Ryd tidligere indhold
       document.getElementById('monthInput').addEventListener('change', function() {
         const selectedMonth = new Date(this.value);
         const tableBody = document.getElementById('monthlyNutri');
@@ -102,7 +126,7 @@
         const selectedDay = new Date(this.value);
         const tableBody = document.getElementById('hourlyNutri');
         tableBody.innerHTML = '';
-        for (let hour = 0; hour < 24; hour++) {
+        for (let hour = 0; 0 < 24; hour++) {
           const row = tableBody.insertRow();
           const cellTime = row.insertCell(0);
           const cellEnergy = row.insertCell(1);
@@ -117,6 +141,6 @@
           cellNet.textContent = '0 kcal';
         }
       });
+    });
     </script>
 </body>
-</html>
