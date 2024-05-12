@@ -1,11 +1,13 @@
 class MealConsumption {
-  constructor(mealIndex, mealName, addedOn, ctime, cweight) {
+  constructor(mealIndex, mealName, addedOn, ctime, cweight, location = null) {
     this.mealIndex = mealIndex;
     this.mealName = mealName;
     this.addedOn = addedOn;
     this.ctime = ctime;
     this.cweight = cweight;
+    this.location = location; 
   }
+  
 
   // Adding a meal tracker modal
   static addMealtracker(mtype) {
@@ -29,30 +31,46 @@ class MealConsumption {
     modal.show();
   }
 
-  // Adding meal consumption to local storage
-  static addmealconsumption() {
-    if (meallist.selectedIndex == -1) {
-      alert("Please Select any meal from list.");
-      return;
-    }
-    let mindex = meallist.options[meallist.selectedIndex].value;
-    let mname = meallist.options[meallist.selectedIndex].text;
-    let ml;
-    let m;
-    if (localStorage.getItem("mealtracker") == null) {
-      ml = [];
-      m = 0;
-    } else {
-      ml = JSON.parse(localStorage.getItem("mealtracker"));
-      m = ml.length;
-    }
+ // Adding meal consumption to local storage
+static addmealconsumption() {
+  if (meallist.selectedIndex == -1) {
+    alert("Please Select any meal from list.");
+    return;
+  }
+  let mindex = meallist.options[meallist.selectedIndex].value;
+  let mname = meallist.options[meallist.selectedIndex].text;
+  let ml;
+  let m;
+  if (localStorage.getItem("mealtracker") == null) {
+    ml = [];
+    m = 0;
+  } else {
+    ml = JSON.parse(localStorage.getItem("mealtracker"));
+    m = ml.length;
+  }
 
+  // Get geolocation data
+  navigator.geolocation.getCurrentPosition(position => {
+    const { latitude, longitude } = position.coords;
+    const location = `Latitude: ${latitude.toFixed(2)}, Longitude: ${longitude.toFixed(2)}`;
+
+    // Add meal consumption with location to localStorage
+    ml[m] = new MealConsumption(mindex, mname, addedOn.value, consume_time.value, consume_weight.value, location);
+    localStorage.setItem("mealtracker", JSON.stringify(ml));
+
+    mealtrackerForm.reset();
+    MealConsumption.showmealtracker();
+  }, error => {
+    console.error('Error getting geolocation:', error);
+    // Add meal consumption without location to localStorage
     ml[m] = new MealConsumption(mindex, mname, addedOn.value, consume_time.value, consume_weight.value);
     localStorage.setItem("mealtracker", JSON.stringify(ml));
 
     mealtrackerForm.reset();
     MealConsumption.showmealtracker();
-  }
+  });
+}
+
 
   // Editing meal tracker entry
   static edittracker(i) {
@@ -96,7 +114,8 @@ class MealConsumption {
       ${(ml[element.mealIndex].totalKcal / ml[element.mealIndex].weight * element.cweight).toFixed(2)}Kcal</td>
       <td>${convertDateFormat(element.addedOn)}<br>${element.ctime} </td>
     </td>
-    <td> 
+    <td>     ${element.location || 'N/A'} 
+
       <i id="greenicon" onclick='showind(${element.mealIndex})' class="material-icons">book</i>
       <i id="blueicon" class="material-icons" onclick='MealConsumption.edittracker(${i})'>create</i>
       <i id="redicon" onclick='MealConsumption.delmealtracker(${i})' class="material-icons">delete</i>
