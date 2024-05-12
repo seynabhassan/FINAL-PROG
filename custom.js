@@ -45,7 +45,7 @@ function populatefoodSelect() {
   });
 }
 
-//filter
+//filter food select
 function filterfoodSelect() {
   let filter = document.getElementById("filter");
   if (filter == null) return populatefoodSelect();
@@ -185,23 +185,23 @@ setFirstTimeLocal("ind");
 
 Food.fetchFoodItem();
 
-//Geolokation for meal tracker
-const findMyCity = () => {
-  const status = document.querySelector('.status');
+// //Geolokation for meal tracker
+// const findMyCity = () => {
+//   const status = document.querySelector('.status');
 
-  const success = (position) => {
-    console.log(position)
-  }
+//   const success = (position) => {
+//     console.log(position)
+//   }
 
-  const error = () => {
-    status.textContent = 'Error: Lokation ikke fundet'; 
-  }
+//   const error = () => {
+//     status.textContent = 'Error: Lokation ikke fundet'; 
+//   }
 
-  navigator.geolocation.getCurrentPosition(success, error);
+//   navigator.geolocation.getCurrentPosition(success, error);
 
-}
+// }
 
-document.querySelector('.find-city').addEventListener('click',findMyCity);
+// document.querySelector('.find-city').addEventListener('click',findMyCity);
 
 function shownutrireport() { // Fetch data from localStorage
   let mt = JSON.parse(localStorage.getItem("mealtracker"));
