@@ -162,14 +162,6 @@ app.get('/activity-tracker.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../FINAL-PROG/activity-tracker.html'), { error: '' });
 });
 
-app.get('/food-inspector.html', (req, res) => {
-    if (!req.session.loggedin) {
-        res.redirect('/login');
-        return;
-    }
-    res.sendFile(path.join(__dirname, '../FINAL-PROG/food-inspector.html'), { error: '' });
-});
-
 app.get('/signup.html', (req, res) => {
     if (req.session.loggedin) {
         res.redirect('/');
