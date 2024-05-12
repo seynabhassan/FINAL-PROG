@@ -7,7 +7,7 @@ require('dotenv').config();
 
 
 // Assuming Users() function handles database operations
-const Users = require('./User.js'); // Adjust the path as per your project structure
+const Users = require('./Public/User.js'); // Adjust the path as per your project structure
 
 const PORT = process.env.PORT || 4000;
 
@@ -22,24 +22,24 @@ app.use(function(req, res, next) {
     next();
 });
 
-const validateLogIn = async (reqUser, dbUser) => {
+const validateLogIn = (reqUser, dbUser) => {
     if (!reqUser.username || !reqUser.password) {
         return 'Both username and password are required';
     }
-    if (!dbUser) {
+    if (dbUser === "") {
         return 'Username not found';
     }
-    if (!(await bcrypt.compare(reqUser.password, dbUser.password))) {
+    if (reqUser.password !== dbUser.password) {
         return 'Incorrect password';
     }
     return true;
 };
 
-const validateCreate = async (reqUser, dbUser) => {
+function validateCreate(reqUser, dbUser) {
     if (!reqUser.username || !reqUser.password) {
         return 'Both username and password are required';
     }
-    if (dbUser) {
+    if (dbUser !== "") {
         return 'Username already exists';
     }
     return true;
@@ -55,8 +55,16 @@ app.get('/login', (req, res) => {
 
 app.post('/login', async (req, res) => {
     const reqUser = req.body;
-    const dbUser = await Users('get', { username: reqUser.username });
-    const validate = await validateLogIn(reqUser, dbUser);
+    let validate = false;
+    let dbUser;
+    await Users('get', { username: reqUser.username }).then((result) => {
+        dbUser = result;
+    })
+    .catch(err => {
+        console.log(err)
+    });
+
+    validate = validateLogIn(reqUser, dbUser)
 
     if (validate !== true) {
         res.sendFile(path.join(__dirname, '../FINAL-PROG/login.html'), { error: validate });
@@ -64,8 +72,14 @@ app.post('/login', async (req, res) => {
     } else {
         req.session.loggedin = true;
         req.session.user = dbUser;
-        res.redirect('/index.html');
+        res.redirect('/');
     }
+});
+
+app.post('/logout', (req, res) => {
+    req.session.loggedin = false;
+    req.session.user = "";
+    res.redirect('/login.html');
 });
 
 app.get('/signup', (req, res) => {
@@ -78,14 +92,15 @@ app.get('/signup', (req, res) => {
 
 app.post('/signup', async (req, res) => {
     const reqUser = req.body;
-    const dbUser = await Users('get', { username: reqUser.username });
-    const validate = await validateCreate(reqUser, dbUser);
+    let dbUser;
+    await Users('get', { username: reqUser.username }).then((result) => {
+        dbUser = result;
+    })
+    const validate = validateCreate(reqUser, dbUser);
 
     if (validate !== true) {
         res.sendFile(path.join(__dirname, '../FINAL-PROG/signup.html'), { error: validate });
     } else {
-        const salt = await bcrypt.genSalt(10);
-        reqUser.password = await bcrypt.hash(reqUser.password, salt);
         // Save user to database
         await Users('create', { 
             username: reqUser.username, 
@@ -101,10 +116,58 @@ app.post('/signup', async (req, res) => {
 
 app.get('/', (req, res) => {
     if (!req.session.loggedin) {
-        res.redirect('/login.html');
+        res.redirect('/login');
         return;
     }
     res.sendFile(path.join(__dirname, '../FINAL-PROG/Index.html'), { error: '' });
+});
+
+app.get('/Index.html', (req, res) => {
+    if (!req.session.loggedin) {
+        res.redirect('/login');
+        return;
+    }
+    res.sendFile(path.join(__dirname, '../FINAL-PROG/Index.html'), { error: '' });
+});
+
+app.get('/meal-creator.html', (req, res) => {
+    if (!req.session.loggedin) {
+        res.redirect('/login');
+        return;
+    }
+    res.sendFile(path.join(__dirname, '../FINAL-PROG/meal-creator.html'), { error: '' });
+});
+
+app.get('/meal-tracker.html', (req, res) => {
+    if (!req.session.loggedin) {
+        res.redirect('/login');
+        return;
+    }
+    res.sendFile(path.join(__dirname, '../FINAL-PROG/meal-tracker.html'), { error: '' });
+});
+
+app.get('/nutri-reports.html', (req, res) => {
+    if (!req.session.loggedin) {
+        res.redirect('/login');
+        return;
+    }
+    res.sendFile(path.join(__dirname, '../FINAL-PROG/nutri-reports.html'), { error: '' });
+});
+
+app.get('/activity-tracker.html', (req, res) => {
+    if (!req.session.loggedin) {
+        res.redirect('/login');
+        return;
+    }
+    res.sendFile(path.join(__dirname, '../FINAL-PROG/activity-tracker.html'), { error: '' });
+});
+
+app.get('/food-inspector.html', (req, res) => {
+    if (!req.session.loggedin) {
+        res.redirect('/login');
+        return;
+    }
+    res.sendFile(path.join(__dirname, '../FINAL-PROG/food-inspector.html'), { error: '' });
 });
 
 app.get('/signup.html', (req, res) => {
@@ -128,3 +191,4 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`To access the login page, go to: http://localhost:${PORT}/login`);
 });
+
